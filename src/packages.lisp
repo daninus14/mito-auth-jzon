@@ -11,6 +11,7 @@
   (:import-from #:babel
                 #:string-to-octets)
   (:export #:has-secure-password
+           #:mito-auth-jzon-metaclass
            #:auth
            #:password
            #:password-hash
