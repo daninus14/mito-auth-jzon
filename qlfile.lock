@@ -9,8 +9,20 @@
 ("jzon-util" .
  (:class qlot/source/github:source-github
   :initargs (:repos "daninus14/jzon-util" :ref nil :branch nil :tag nil)
-  :version "github-47a93d66b512e4f0afe5065d5bc4dd93787bbd4d"))
+  :version "github-b4f910985c0df5bdf0ed1e760e6d80eaeb54f8d5"))
 ("jzon" .
  (:class qlot/source/github:source-github
   :initargs (:repos "daninus14/jzon" :ref nil :branch "metaclass-extensibility" :tag nil)
   :version "github-b7fb3b97549957de27692c64871999c4cbd27d94"))
+("mito" .
+ (:class qlot/source/github:source-github
+  :initargs (:repos "daninus14/mito" :ref nil :branch "dn-develop" :tag nil)
+  :version "github-14ef86774b044224a7206e58349dffe5e7fecbf9"))
+("log4cl" .
+ (:class qlot/source/github:source-github
+  :initargs (:repos "sharplispers/log4cl" :ref nil :branch nil :tag nil)
+  :version "github-fe3da517147d023029782ced7cd989ba24f1e62d"))
+("log4sly" .
+ (:class qlot/source/github:source-github
+  :initargs (:repos "40ants/log4sly" :ref nil :branch nil :tag nil)
+  :version "github-b229658c7fa8a8ff62cddd832e812cda96b50df6"))
