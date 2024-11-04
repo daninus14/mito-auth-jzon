@@ -10,37 +10,33 @@ The code currently lives in [[https://github.com/daninus14/mito-auth-jzon][GitHu
 Here's a simple example
 
 #+BEGIN_SRC common-lisp
-  (defclass c1 (mito-auth-jzon:has-secure-password)
-    ((name :accessor name :initargs :name :initform NIL :col-type (or :null :text))
-     (secret :initargs :secret :col-type (or :null :text) :sensitive t))
+  CL-USER> (defclass user1 (mito-auth:has-secure-sensitive-password)
+    ((name :col-type (:varchar 60)
+           :initarg :name
+           :accessor user-name)
+     (email :col-type (:varchar 255)
+            :initarg :email
+            :accessor user-email)
+     (secret :col-type (or :null :text)
+             :accessor secret
+             :sensitive t))
     (:metaclass mito-auth-jzon:mito-auth-jzon-metaclass))
-
-  CL-USER> (make-instance 'c1 :name "john" :password "robert")
-  #<C1 {1003AB7A73}>
+  #<MITO-AUTH-JZON:MITO-AUTH-JZON-METACLASS COMMON-LISP-USER::USER1>
+  CL-USER> (make-instance 'user1 :name "robert" :email "robert@ludlum.com" :password "bourne" :secret "jason")
+  #<USER1 {1004743603}>
   CL-USER> (inspect *)
 
-  The object is a STANDARD-OBJECT of type C1.
-  0. PASSWORD-HASH: "32c24df75ca9780f297fb39d2e63792802cb0143dd3f344da200f8dc614f5ffd"
-  1. PASSWORD-SALT: #(27 15 5 5 218 252 44 59 194 209 15 215 93 13 154 200 94 155
-                      125 218)
-  2. NAME: "john"
+  The object is a STANDARD-OBJECT of type USER1.
+  0. PASSWORD-HASH: "eb9589da31ec4d09d43879ebc106d55fab3db1321e1980e3c445a6b02a2b85aa"
+  1. PASSWORD-SALT: #(184 252 253 13 101 200 240 24 44 116 95 210 250 251 28 24
+                      197 80 191 137)
+  2. NAME: "robert"
+  3. EMAIL: "robert@ludlum.com"
+  4. SECRET: "jason"
   > q
-                                          ; No values
-  CL-USER> (com.inuoe.jzon:stringify (make-instance 'c1 :name "john" :password "robert"))
-  "{\"name\":\"john\"}"
-
-  (make-instance 'c1 :name "john" :password "robert" :secret "42")
-  CL-USER> (inspect *)
-
-  The object is a STANDARD-OBJECT of type C1.
-  0. PASSWORD-HASH: "6230941236ad8634f05c3763fa51d951aa45797395ee5ab7676edbfe1427f83f"
-  1. PASSWORD-SALT: #(117 3 195 172 69 0 202 61 116 221 185 103 164 80 56 163 50
-                      50 114 220)
-  2. NAME: "john"
-  3. SECRET: "42"
-
-  CL-USER> (com.inuoe.jzon:stringify (make-instance 'c1 :name "john" :password "robert" :secret "42"))
-"{\"name\":\"john\"}"
+  ; No values
+  CL-USER> (com.inuoe.jzon:stringify (make-instance 'user1 :name "robert" :email "robert@ludlum.com" :password "bourne" :secret "jason"))
+  "{\"name\":\"robert\",\"email\":\"robert@ludlum.com\"}"
 #+END_SRC
 
 As you can see, the password related fields are not encoded.
@@ -55,17 +51,16 @@ For the usage of the authentication, please referer to the original project [[ht
 
 For detailed usage of the =sensitve= to avoid json encoding API see [[https://github.com/daninus14/jzon-util][jzon-util]].
 
+To use define a class and inherit from =mito-auth:has-secure-sensitive-password= and apply the metaclass =mito-auth-jzon:mito-auth-jzon-metaclass=. See above for an example.
+
 * Dependencies
 
 - [[https://github.com/daninus14/jzon-util][jzon-util]]
-- ironclad
-- babel
+- mito-auth
  
 * Acknowledgements
 
 All the mito-auth code was graciously contributed by Eitaro Fukamachi see [[https://github.com/fukamachi/mito-auth][mito-auth]].
-
-Unfortunately, because of an issue with the image not allowing class reinitialization when changing the metaclass, we couldn't just redefine the =has-secure-password= class in =mito-auth=, and instead we had to copy all the code. All credit of mito-auth goes to Eitaro Fukamachi.
 
 * Notes
 

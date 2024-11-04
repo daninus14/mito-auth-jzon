@@ -5,10 +5,13 @@
          :accessor user-name)
    (email :col-type (:varchar 255)
           :initarg :email
-          :accessor user-email))
+          :accessor user-email)
+   (secret :col-type (or :null :text)
+           :accessor secret
+           :sensitive t))
   (:metaclass mito-auth-jzon:mito-auth-jzon-metaclass))
 
 
-(make-instance 'user1 :name "robert" :email "robert@ludlum.com" :password "bourne")
+(make-instance 'user1 :name "robert" :email "robert@ludlum.com" :password "bourne" :secret "jason")
 
-(com.inuoe.jzon:stringify (make-instance 'user1 :name "robert" :email "robert@ludlum.com" :password "bourne"))
+(com.inuoe.jzon:stringify (make-instance 'user1 :name "robert" :email "robert@ludlum.com" :password "bourne" :secret "jason"))
