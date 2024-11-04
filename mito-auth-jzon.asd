@@ -5,6 +5,7 @@
   :depends-on ("com.inuoe.jzon"
                "jzon-util"
                "mito"
+               "mito-auth"
                "ironclad"
                "babel"
                "closer-mop")
