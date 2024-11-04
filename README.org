@@ -49,14 +49,14 @@ They key ideas to keep in mind is that
 
 For the usage of the authentication, please referer to the original project [[https://github.com/fukamachi/mito-auth][mito-auth]].
 
-For detailed usage of the =sensitve= to avoid json encoding API see [[https://github.com/daninus14/jzon-util][jzon-util]].
+For detailed usage of the =sensitve= API to avoid json encoding see [[https://github.com/daninus14/jzon-util][jzon-util]].
 
-To use define a class and inherit from =mito-auth:has-secure-sensitive-password= and apply the metaclass =mito-auth-jzon:mito-auth-jzon-metaclass=. See above for an example.
+To use: define a class and inherit from =mito-auth:has-secure-sensitive-password= and apply the metaclass =mito-auth-jzon:mito-auth-jzon-metaclass=. See above for an example.
 
 * Dependencies
 
 - [[https://github.com/daninus14/jzon-util][jzon-util]]
-- mito-auth
+- [[https://github.com/fukamachi/mito-auth][mito-auth]]
  
 * Acknowledgements
 
