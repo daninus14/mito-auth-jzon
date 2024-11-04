@@ -1,6 +1,6 @@
 * mito-auth-jzon
 
-This library basically brings together mito-auth and jzon-util to avoid json encoding the password slots from =has-secure-password=.
+This library basically brings together mito, mito-auth and jzon-util to avoid json encoding the password slots from =has-secure-password= and any other sensitive slots.
 * Getting The Code
 
 The code currently lives in [[https://github.com/daninus14/mito-auth-jzon][GitHub]]
